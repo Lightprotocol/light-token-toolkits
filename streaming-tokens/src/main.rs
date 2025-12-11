@@ -18,8 +18,6 @@ async fn main() -> anyhow::Result<()> {
     let api_key = std::env::var("HELIUS_API_KEY")?;
     let endpoint = "https://laserstream-devnet-ewr.helius-rpc.com".to_string();
 
-    println!("Connecting to Helius Laserstream (devnet)...");
-    println!("Filtering for Light System Program: {}", LIGHT_SYSTEM_PROGRAM);
 
     let config = LaserstreamConfig::new(endpoint, api_key);
 
@@ -40,7 +38,8 @@ async fn main() -> anyhow::Result<()> {
     let (stream, _handle) = subscribe(config, request);
     tokio::pin!(stream);
 
-    println!("Connected! Waiting for Light Protocol transactions...\n");
+    println!("Connected to Helius Laserstream (devnet) ...");
+    println!("Listening for new mints ...\n");
 
     while let Some(update) = stream.next().await {
         match update {
@@ -182,7 +181,6 @@ fn process_transaction(msg: &Message, meta: Option<&TransactionStatusMeta>) {
 
                                 match CompressedMint::try_from_slice(&data.data) {
                                     Ok(mint) => {
-                                        let mint_pubkey = bs58::encode(mint.metadata.mint.to_bytes()).into_string();
                                         println!("    Mint Address: {}", address_str);
                                         println!("      Supply: {}", mint.base.supply);
                                         println!("      Decimals: {}", mint.base.decimals);
