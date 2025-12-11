@@ -1,0 +1,20 @@
+[package]
+name = "streaming-tokens"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+helius-laserstream = "0.1"
+tokio = { version = "1", features = ["full"] }
+futures = "0.3"
+anyhow = "1"
+dotenvy = "0.15"
+
+# Part 2: Event parsing
+light-event = "0.2"
+light-compressed-account = "0.7"
+borsh = "0.10"
+bs58 = "0.5"
+
+# Part 3: Mint extraction
+light-ctoken-interface = "0.1"

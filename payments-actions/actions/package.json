@@ -1,0 +1,21 @@
+{
+  "name": "institutional-payments",
+  "version": "1.0.0",
+  "description": "c-Token institutional payments example on devnet",
+  "scripts": {
+    "receive": "npx ts-node src/receive-payments.ts",
+    "send": "npx ts-node src/send-payments.ts"
+  },
+  "dependencies": {
+    "@lightprotocol/compressed-token": "^0.22.1-alpha.1",
+    "@lightprotocol/stateless.js": "^0.22.1-alpha.1",
+    "@solana/web3.js": "^1.95.0",
+    "bs58": "^5.0.0",
+    "dotenv": "^16.5.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.0.0"
+  }
+}
